@@ -22,10 +22,14 @@
 		"onCommand:extraSqlScriptAs.updateTable",
 		"onCommand:extraSqlScriptAs.deleteTable",
 		"onCommand:extraSqlScriptAs.selectTable",
+		"onCommand:extraSqlScriptAs.dropandCreateStoredProcedure",
+		"onCommand:extraSqlScriptAs.dropandCreateFunction",
 		"onCommand:extraSqlScriptAs.insertTableToClipboard",
 		"onCommand:extraSqlScriptAs.updateTableToClipboard",
 		"onCommand:extraSqlScriptAs.deleteTableToClipboard",
-		"onCommand:extraSqlScriptAs.selectTableToClipboard"
+		"onCommand:extraSqlScriptAs.selectTableToClipboard",
+		"onCommand:extraSqlScriptAs.dropandCreateStoredProcedureToClipboard",
+		"onCommand:extraSqlScriptAs.dropandCreateFunctionToClipboard"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -47,6 +51,14 @@
 				"title": "Script Table as SELECT"
 			},
 			{
+				"command": "extraSqlScriptAs.dropandCreateStoredProcedure",
+				"title": "Script Stored procedure as DROP AND CREATE"
+			},
+			{
+				"command": "extraSqlScriptAs.dropandCreateFunction",
+				"title": "Script Functions as DROP AND CREATE"
+			},
+			{
 				"command": "extraSqlScriptAs.insertTableToClipboard",
 				"title": "Script Table as INSERT to clipboard"
 			},
@@ -61,6 +73,14 @@
 			{
 				"command": "extraSqlScriptAs.selectTableToClipboard",
 				"title": "Script Table as SELECT to clipboard"
+			},
+			{
+				"command": "extraSqlScriptAs.dropandCreateStoredProcedureToClipboard",
+				"title": "Script Stored procedure as DROP AND CREATE to clipboard"
+			},
+			{
+				"command": "extraSqlScriptAs.dropandCreateFunctionToClipboard",
+				"title": "Script Functions as DROP AND CREATE to clipboard"
 			}
 		],
 		"menus": {
@@ -86,6 +106,16 @@
 					"group": "1data1"
 				},
 				{
+					"command": "extraSqlScriptAs.dropandCreateStoredProcedure",
+					"when": "connectionProvider == MSSQL && nodeType == StoredProcedure",
+					"group": "1data1"
+				},
+				{
+					"command": "extraSqlScriptAs.dropandCreateFunction",
+					"when": "connectionProvider == MSSQL && nodeType == ScalarValuedFunction",
+					"group": "1data1"
+				},
+				{
 					"command": "extraSqlScriptAs.insertTableToClipboard",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Table",
 					"group": "1data1"
@@ -103,6 +133,16 @@
 				{
 					"command": "extraSqlScriptAs.selectTableToClipboard",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Table",
+					"group": "1data1"
+				},
+				{
+					"command": "extraSqlScriptAs.dropandCreateStoredProcedureToClipboard",
+					"when": "connectionProvider == MSSQL && nodeType == StoredProcedure",
+					"group": "1data1"
+				},
+				{
+					"command": "extraSqlScriptAs.dropandCreateFunctionToClipboard",
+					"when": "connectionProvider == MSSQL && nodeType == ScalarValuedFunction",
 					"group": "1data1"
 				}
 			]
@@ -126,44 +166,4 @@
 		"typescript": "^4.5.2",
 		"vscode-test": "^1.6.1"
 	}
-    "onCommand:extraSqlScriptAs.dropandCreateStoredProcedure",
-    "onCommand:extraSqlScriptAs.dropandCreateFunction",
-    "onCommand:extraSqlScriptAs.dropandCreateStoredProcedureToClipboard",
-    "onCommand:extraSqlScriptAs.dropandCreateFunctionToClipboard"
-      {
-        "command": "extraSqlScriptAs.dropandCreateStoredProcedure",
-        "title": "Script Stored procedure as DROP AND CREATE"
-      },
-      {
-        "command": "extraSqlScriptAs.dropandCreateFunction",
-        "title": "Script Functions as DROP AND CREATE"
-      },
-      {
-        "command": "extraSqlScriptAs.dropandCreateStoredProcedureToClipboard",
-        "title": "Script Stored procedure as DROP AND CREATE to clipboard"
-      },
-      {
-        "command": "extraSqlScriptAs.dropandCreateFunctionToClipboard",
-        "title": "Script Functions as DROP AND CREATE to clipboard"
-      }
-        {
-          "command": "extraSqlScriptAs.dropandCreateStoredProcedure",
-          "when": "connectionProvider == MSSQL && nodeType == StoredProcedure",
-          "group": "1data1"
-        },
-        {
-          "command": "extraSqlScriptAs.dropandCreateFunction",
-          "when": "connectionProvider == MSSQL && nodeType == ScalarValuedFunction",
-          "group": "1data1"
-        },
-        {
-          "command": "extraSqlScriptAs.dropandCreateStoredProcedureToClipboard",
-          "when": "connectionProvider == MSSQL && nodeType == StoredProcedure",
-          "group": "1data1"
-        },
-        {
-          "command": "extraSqlScriptAs.dropandCreateFunctionToClipboard",
-          "when": "connectionProvider == MSSQL && nodeType == ScalarValuedFunction",
-          "group": "1data1"
-        }
 }
